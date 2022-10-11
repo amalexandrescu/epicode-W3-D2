@@ -4,17 +4,13 @@
       .myHeading {
         color: red;
       }
-
-      .hideUl {
-        visibility: hidden;
-      }
     </style>
   </head>
 
   <body>
     <div>
-      <h1>This is the title of the page</h1>
-      <h2>This is the subtitle of the page</h2>
+      <h1>This is the title of the page - DOM manipulation</h1>
+      <h2>This is the subtitle of the page - Exercise inputs and events</h2>
     </div>
 
     <div>
@@ -101,6 +97,9 @@
         aTags[0].href = "https://www.google.com";
         aTags[0].innerText =
           "I've changed the content just to know that now you are linked to a google url, not to the Epicode one";
+
+        //for all a tags:
+        // for (let node of aTags) node.href = "https://www.google.com";
       };
 
       /* EXERCISE 5
@@ -108,7 +107,8 @@
       */
 
       const addToTheSecond = function (content) {
-        // const secondUlList = document.querySelector("div ul:nth-child(3)");
+        // const secUlList = document.querySelector("div ul:nth-child(2)");
+        // console.log("my sec ul:", secUlList);
         const secondUlList = document.getElementById("secondList");
         // console.log(secondUlList);
         const newLi = document.createElement("li");
@@ -175,20 +175,45 @@
        Change the footer text with something else when the user clicks on it.
       */
 
+      const divList = document.getElementsByTagName("div");
+      // console.log(divList);
+      const lastDiv = divList[divList.length - 1];
+      const footer = lastDiv.querySelector("div h2");
+      // console.log("footer", footer);
+
       const changeFooterText = function () {
-        //
+        footer.innerText = "I've changed the footer on click";
       };
+
+      footer.addEventListener("click", changeFooterText);
 
       /* EXERCISE 11
        Attach an event listener to the input field in the page that changes the text of the page's subtitle
       */
 
       const inputField = document.getElementById("input-field");
-      inputField.addEventListener("click");
-      // ...
+      const h2Subtitle = document.querySelector("h2");
+
+      const getInputText = function (event) {
+        let inputText = event.target.value;
+        return inputText;
+      };
+
+      inputField.addEventListener("input", getInputText);
+
+      const changeSubtitleText = function () {
+        let text = getInputText(event);
+        h2Subtitle.innerText = text;
+      };
+
+      inputField.addEventListener("change", changeSubtitleText);
+
+      /* EXERCISE 12
+           Create a welcome alert message when the page successfully loads.
+      */
 
       window.onload = function () {
-        //
+        alert("Page successfully loaded");
       };
 
       /* EXERCISE 13
@@ -198,6 +223,20 @@
       /* ### EXTRA ###  EXERCISE 14
        Create an input of type "color" and use it to change the color of the subtitle
       */
+
+      const newInputElement = document.createElement("input");
+      newInputElement.setAttribute("type", "color");
+      newInputElement.setAttribute("id", "my-input");
+      newInputElement.setAttribute("placeholder", "Write something here");
+      document.body.appendChild(newInputElement);
+
+      const changeSubtitleColorFromInput = function (event) {
+        console.log(event.target.value);
+        const currentInputColor = event.target.value;
+        h2Subtitle.style.color = currentInputColor;
+      };
+
+      newInputElement.addEventListener("change", changeSubtitleColorFromInput);
     </script>
   </body>
 </html>

@@ -97,6 +97,9 @@
         aTags[0].href = "https://www.google.com";
         aTags[0].innerText =
           "I've changed the content just to know that now you are linked to a google url, not to the Epicode one";
+
+        //for all a tags:
+        // for (let node of aTags) node.href = "https://www.google.com";
       };
 
       /* EXERCISE 5
@@ -104,7 +107,8 @@
       */
 
       const addToTheSecond = function (content) {
-        // const secondUlList = document.querySelector("div ul:nth-child(3)");
+        // const secUlList = document.querySelector("div ul:nth-child(2)");
+        // console.log("my sec ul:", secUlList);
         const secondUlList = document.getElementById("secondList");
         // console.log(secondUlList);
         const newLi = document.createElement("li");
@@ -232,7 +236,7 @@
         h2Subtitle.style.color = currentInputColor;
       };
 
-      newInputElement.addEventListener("click", changeSubtitleColorFromInput);
+      newInputElement.addEventListener("change", changeSubtitleColorFromInput);
     </script>
   </body>
 </html>
